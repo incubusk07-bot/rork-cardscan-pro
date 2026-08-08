@@ -15,25 +15,27 @@
 --      Create OAuth client ID → type "Web application".
 --   2. Authorized redirect URI (exactly):
 --        https://uplwlwumsptrbxvoazzi.supabase.co/auth/v1/callback
---   3. Paste that Client ID + Secret into Supabase → Auth → Providers →
---      Google and save. (The Android SHA-1 fields below are only needed
---      for native one-tap sign-in, not for this browser OAuth flow.)
---   Android package name: com.cardscanner.app
---   SHA-1 (debug):   REPLACE_WITH_DEBUG_SHA1_FINGERPRINT
---   SHA-1 (release): REPLACE_WITH_RELEASE_SHA1_FINGERPRINT
---   SHA-256 pair:    REPLACE_WITH_DEBUG_SHA256 / REPLACE_WITH_RELEASE_SHA256
---   Get debug: keytool -list -v -keystore ~/.android/debug.keystore \
---     -alias androiddebugkey -storepass android -keypass android
---   Get release: Play Console → Setup → App signing.
+--   3. Paste the WEB APPLICATION Client ID + Secret into Supabase → Auth →
+--      Providers → Google and save. (NOT the Android client — the Android
+--      client has no secret; it exists only so Google trusts the package.)
+--   4. Google Cloud → Google Auth Platform → Audience: while "Testing",
+--      add your Gmail under Test users (or Publish app) — otherwise Google
+--      blocks sign-in and the app reports it as "cancelled".
+--   Android OAuth client (optional, for future one-tap):
+--     Package name: com.verex.app
+--     SHA-1: expo.dev → project → Credentials → Android keystore → SHA-1
+--     (must be the FULL 20-byte value, e.g. XX:XX:...:XX — 40 hex chars)
 --
 -- REDIRECT URLS (required): Dashboard → Auth → URL Configuration →
---   Redirect URLs — add BOTH:
---     com.cardscanner.app://        (standalone Android APK)
---     exp://*                       (Expo Go / Rork preview; or paste the
+--   Redirect URLs — make sure these exist:
+--     verex://callback              (standalone Android APK — the app uses
+--                                    this exact value)
+--     com.verex.app://callback      (kept as backup scheme)
+--     exp://<host>                  (Expo Go / Rork preview — paste the
 --                                    exact exp:// URI printed in the app
 --                                    log line "[auth] google redirect uri")
 --   The app calls supabase.auth.signInWithOAuth({ provider: 'google',
---   options: { redirectTo: 'com.cardscanner.app://' } }) on device builds.
+--   options: { redirectTo: 'verex://callback' } }) on device builds.
 -- ============================================================
 
 -- Profiles (auto-created on signup)

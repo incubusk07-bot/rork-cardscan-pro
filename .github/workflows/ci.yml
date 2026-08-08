@@ -20,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Setup Expo
         uses: expo/expo-github-action@v8
@@ -29,9 +29,15 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Install dependencies
-        run: bun install
+        working-directory: expo
+        run: bun install --frozen-lockfile
+
+      - name: Guard against stray npm/yarn lock files
+        working-directory: expo
+        run: rm -f package-lock.json yarn.lock pnpm-lock.yaml
 
       - name: Build Android APK via EAS
+        working-directory: expo
         run: npx eas-cli build --platform android --profile preview --non-interactive
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}

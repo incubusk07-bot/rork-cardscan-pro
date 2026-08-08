@@ -5,13 +5,13 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": ["verex", "com.cardscanner.app"],
+    "scheme": ["verex", "com.verex.app"],
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/images/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#FFFFFF"
+      "backgroundColor": "#F7F5F0"
     },
     "ios": {
       "supportsTablet": false,
@@ -20,9 +20,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#F7F5F0"
       },
-      "package": "com.cardscanner.app"
+      "package": "com.verex.app"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"

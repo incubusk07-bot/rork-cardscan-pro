@@ -89,7 +89,7 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
               <Image
                 source={require("@/assets/images/brand/mark.png")}
                 style={styles.avatarImg}
-                contentFit="cover"
+                contentFit="contain"
               />
             )}
           </View>
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     width: 62,
     height: 62,
     borderRadius: 31,
-    backgroundColor: colors.charcoalRaise,
+    backgroundColor: colors.surfaceAlt,
     borderWidth: 1.5,
     borderColor: colors.goldOnDark,
     alignItems: "center",
@@ -208,8 +208,8 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   avatarImg: {
-    width: "100%",
-    height: "100%",
+    width: "72%",
+    height: "72%",
   },
   avatarText: {
     fontFamily: fonts.display,

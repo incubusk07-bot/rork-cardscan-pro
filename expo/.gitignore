@@ -3,6 +3,11 @@
 # dependencies
 node_modules/
 
+# only bun.lock is the source of truth — other lock files confuse EAS/CI
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
 # Expo
 .expo/
 dist/

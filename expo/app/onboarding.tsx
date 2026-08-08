@@ -63,9 +63,9 @@ function SlideArt({ icon }: { icon: Slide["icon"] }) {
         <View style={[styles.artCorner, styles.artBL]} />
         <View style={[styles.artCorner, styles.artBR]} />
         <Image
-          source={require("@/assets/images/brand/mark.png")}
+          source={require("@/assets/images/brand/dragon.png")}
           style={styles.artMark}
-          contentFit="contain"
+          contentFit="cover"
         />
       </View>
     );
@@ -197,9 +197,10 @@ const styles = StyleSheet.create({
   artBL: { bottom: 0, left: 0, borderBottomWidth: 3, borderLeftWidth: 3, borderBottomLeftRadius: 12 },
   artBR: { bottom: 0, right: 0, borderBottomWidth: 3, borderRightWidth: 3, borderBottomRightRadius: 12 },
   artMark: {
-    width: 120,
-    height: 120,
-    borderRadius: 26,
+    width: 152,
+    height: 152,
+    borderRadius: 32,
+    overflow: "hidden",
   },
   artCircle: {
     width: 150,

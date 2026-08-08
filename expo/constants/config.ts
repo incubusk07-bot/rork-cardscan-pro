@@ -41,25 +41,27 @@ export const ONE_PIECE_NOTE =
 
 /**
  * Deep-link redirect used by Supabase Google OAuth on the standalone
- * Android build. Must be whitelisted in Supabase → Auth → URL
- * Configuration → Redirect URLs. In Expo Go / Rork preview the app
- * automatically falls back to the exp:// development URL instead.
+ * Android build. This EXACT value must be in Supabase → Auth → URL
+ * Configuration → Redirect URLs (it already is: verex://callback).
+ * In Expo Go / Rork preview the app automatically falls back to the
+ * exp:// development URL instead — add that one too while testing.
  */
-export const GOOGLE_OAUTH_REDIRECT = "com.cardscanner.app://" as const;
+export const GOOGLE_OAUTH_REDIRECT = "verex://callback" as const;
 
 /**
- * Android build configuration.
- * SHA fingerprints are required for Supabase Google OAuth on Android.
- * Debug:   keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
- * Release: Play Console → Setup → App signing (App signing key certificate)
+ * Android build configuration — must match the Google Cloud Android
+ * OAuth client (package name com.verex.app).
+ * SHA-1 for a local/EAS APK: expo.dev → your project → Credentials →
+ * Android keystore → copy the SHA-1 fingerprint shown there.
+ * (The keystore EAS signs with is the one Google must know about.)
  */
 export const ANDROID_BUILD = {
-  applicationId: "com.cardscanner.app",
+  applicationId: "com.verex.app",
   oauthRedirect: GOOGLE_OAUTH_REDIRECT,
-  debugSha1: "REPLACE_WITH_DEBUG_SHA1_FINGERPRINT",
-  debugSha256: "REPLACE_WITH_DEBUG_SHA256_FINGERPRINT",
-  releaseSha1: "REPLACE_WITH_RELEASE_SHA1_FINGERPRINT",
-  releaseSha256: "REPLACE_WITH_RELEASE_SHA256_FINGERPRINT",
+  debugSha1: "REPLACE_WITH_EAS_KEYSTORE_SHA1",
+  debugSha256: "REPLACE_WITH_EAS_KEYSTORE_SHA256",
+  releaseSha1: "REPLACE_WITH_PLAY_APP_SIGNING_SHA1",
+  releaseSha256: "REPLACE_WITH_PLAY_APP_SIGNING_SHA256",
 } as const;
 
 export interface GameInfo {

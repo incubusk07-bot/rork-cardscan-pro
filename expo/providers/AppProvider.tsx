@@ -628,7 +628,7 @@ export const [AppProvider, useApp] = createContextHook(() => {
 
   const signInWithGoogle = useCallback(async (): Promise<AuthResult> => {
     try {
-      // Standalone APK: com.cardscanner.app:// — Expo Go preview: exp:// dev URL.
+      // Standalone APK: verex://callback — Expo Go preview: exp:// dev URL.
       const redirectTo = makeRedirectUri({ native: GOOGLE_OAUTH_REDIRECT });
       console.log("[auth] google redirect uri:", redirectTo);
       const { data, error } = await supabase.auth.signInWithOAuth({
